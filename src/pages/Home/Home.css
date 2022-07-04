@@ -1,0 +1,74 @@
+.home {
+  min-height: 100vh;
+  user-select: none;
+}
+
+.home-main {
+  background: linear-gradient(
+      294.5deg,
+      rgba(163, 177, 138, 0.7) 4.57%,
+      rgba(162, 176, 136, 0.7) 36.22%,
+      rgba(105, 152, 104, 0.7) 63.88%,
+      rgba(92, 152, 103, 0.7) 96.13%
+    ),
+    url("../../assets/images/home-background.jpeg");
+  background-size: cover;
+  background-position-y: bottom;
+  height: calc(100vh - 70px);
+  padding-right: 100px;
+  position: relative;
+  animation: backMove 10s linear infinite;
+}
+
+.main-heading {
+  text-transform: uppercase;
+  padding-top: 20vh;
+  font-weight: 900;
+  font-size: 200px;
+  line-height: 199px;
+  text-align: right;
+  background: url("../../assets/images/beyond-grad.jpeg") center right;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: backMove 20s linear infinite;
+}
+
+@keyframes moveBackground {
+  from {
+    background-position-y: bottom;
+  }
+  to {
+    background-position-y: top;
+  }
+}
+
+@keyframes backMove {
+  from {
+    background-position-x: right;
+  }
+  to {
+    background-position-x: left;
+  }
+}
+
+.sub-heading {
+  text-align: right;
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 64px;
+  letter-spacing: 0em;
+  color: rgba(36, 61, 48, 1);
+  text-align: right;
+}
+
+.home-logo {
+  position: absolute;
+  left: 20%;
+  top: 5%;
+  height: 50%;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
