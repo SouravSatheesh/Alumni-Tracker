@@ -1,0 +1,76 @@
+.register-main {
+  background-image: url("../../../assets/images/login-bck-img.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: -2px;
+  height: 100vh;
+  display: flex;
+  user-select: none;
+}
+
+.register-container {
+  max-width: 400px;
+  width: 80%;
+}
+
+.register-tab {
+  font-size: 20px;
+  margin-bottom: 1.5vh;
+}
+
+.reg-tab-head:first-child {
+  border-right: 2px solid;
+  border-image-source: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0) 0.01%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-image-slice: 1;
+  padding-right: 20px;
+  margin-right: 20px;
+}
+
+.reg-tab-head span {
+  font-weight: 500;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease-in-out;
+}
+
+.active-tab span {
+  color: #ffffff !important;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-inputs input {
+  height: 40px;
+  width: 100%;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.341);
+  color: white;
+  border: 1.1px solid #ffffff6e;
+  padding-left: 45px;
+  margin: 10px 0;
+}
+
+.register-form .register-inputs {
+  position: relative;
+}
+
+.icon-email-name-pswd {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+}
+
+.register-form .login-button {
+  margin: 25px 0 8px 0;
+}

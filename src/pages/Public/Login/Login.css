@@ -1,0 +1,162 @@
+.login-main {
+  background-image: url("../../../assets/images/login-bck-img.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: -2px;
+  min-height: 100vh;
+  user-select: none;
+}
+
+.home-btn {
+  color: white;
+  -webkit-filter: drop-shadow(1px 1px 4px rgb(255, 255, 255));
+  filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.3));
+  background-color: rgba(88, 129, 87, 1);
+  padding: 12px;
+  border-radius: 50%;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  width: 50px;
+  height: 50px;
+  transition: all 0.3s ease-in-out;
+}
+
+.home-btn:active {
+  transform: scale(0.9);
+}
+
+.login-container {
+  max-width: 400px;
+  width: 80%;/* makes it kinda responsive */
+}
+
+.login-heading {
+  width: fit-content;
+  color: white;
+  font-weight: 500;
+  font-size: calc(1rem + 2vw);
+  margin-bottom: 20px;
+}
+
+.login-heading:after {
+  content: "";
+  display: block;
+  width: 80%;
+  padding-top: 8px;
+  border-bottom: 3px solid #a3b18a;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-cnt input {
+  /* no need for new class when we can do this :) */
+  height: 40px;
+  width: 100%;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.341)!important;
+  border: 1.1px solid #ffffff6e;
+  color: white;
+  margin: 10px 0;
+  padding-left: 45px;
+}
+
+.login-form .input-cnt {
+  position: relative;
+}
+
+.icon-email-pswd {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+}
+
+.input-cnt svg {
+  height: 18px;
+  width: 18px;
+}
+
+.icon-eye {
+  color: grey;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#fp {
+  font-size: 14px; /* dont make text too small */
+  margin-bottom: 8px;
+  width: 100%;
+  text-align: right;
+  color: #ffffffb0;
+  cursor: pointer; /* make it clickable */
+}
+
+.rem-cb {
+  display: block;
+  font-size: 14px;
+  color: white;
+}
+
+.rem-cb input {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  border: 1.1px solid white;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: grid;
+  place-content: center;
+}
+
+.rem-cb input::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  clip-path: polygon(14% 44%, 0% 55%, 40% 90%, 100% 16%, 90% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em white;
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+
+.rem-cb input:checked::before {
+  transform: scale(1);
+}
+
+.login-button {
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px 0;
+  margin: 10px 0;
+  width: 100%;
+  background-color: #3a5a40;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+}
+
+.bottom-line {
+  font-size: 12px;
+  /* margin-left: 52px; */
+  text-align: center; /* use this instead of margin to align center */
+  color: white;
+}
+
+.bottom-line a {
+  color: rgb(183, 183, 183)!important;
+  font-weight: 600;
+  text-decoration: none;
+}

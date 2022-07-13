@@ -1,5 +1,5 @@
 .home {
-  min-height: 100vh;
+  min-height: calc(100vh - 70px);
   user-select: none;
 }
 
@@ -11,7 +11,7 @@
       rgba(105, 152, 104, 0.7) 63.88%,
       rgba(92, 152, 103, 0.7) 96.13%
     ),
-    url("../../assets/images/home-background.jpeg");
+    url("../../../assets/images/home-background.jpeg");
   background-size: cover;
   background-position-y: bottom;
   height: calc(100vh - 70px);
@@ -20,14 +20,14 @@
   animation: backMove 10s linear infinite;
 }
 
-.main-heading {
+.home-heading {
   text-transform: uppercase;
   padding-top: 20vh;
   font-weight: 900;
   font-size: 200px;
   line-height: 199px;
   text-align: right;
-  background: url("../../assets/images/beyond-grad.jpeg") center right;
+  background: url("../../../assets/images/beyond-grad.jpeg") center right;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -52,7 +52,7 @@
   }
 }
 
-.sub-heading {
+.home-subheading {
   text-align: right;
   font-size: 64px;
   font-weight: 900;
