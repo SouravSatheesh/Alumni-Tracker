@@ -1,29 +1,10 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 
 const authContext = createContext();
 
-export const useAuth = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  return {
-    isAuthenticated,
-    login() {
-      return new Promise((res) => {
-        setIsAuthenticated(true);
-        res();
-      });
-    },
-    logout() {
-      return new Promise((res) => {
-        setIsAuthenticated(false);
-        res();
-      });
-    },
-  };
-};
-
 export const isAuth = {
-  isAuthenticated: false,
+  isAuthenticated: true,
+  userType: "alumni",
   login() {
     return new Promise((res) => {
       this.isAuthenticated = true;

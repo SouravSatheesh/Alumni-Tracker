@@ -1,0 +1,155 @@
+.custom-dd {
+  margin: 26px 50px 0 0;
+  max-width: 350px;
+  width: 100%;
+}
+
+.custom-dd .custom-dd__control {
+  background-color: transparent !important;
+  border-radius: 0;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid #d3d3d3 !important;
+}
+
+.custom-dd .custom-dd__placeholder {
+  color: rgb(181, 181, 181);
+}
+
+.custom-dd .custom-dd__placeholder,
+.custom-dd .custom-dd__value-container,
+.custom-dd .custom-dd__input-container {
+  padding: 0;
+  margin: 0;
+}
+
+.custom-dd .custom-dd__indicator-separator {
+  display: none;
+}
+
+.custom-dd .custom-dd__menu-list {
+  background-color: rgba(52, 78, 65, 1);
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.711);
+  padding: 0;
+}
+
+.custom-dd .custom-dd__option {
+  background-color: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.custom-dd .custom-dd__option:last-child {
+  border-bottom: none;
+}
+
+.custom-dd .custom-dd__single-value {
+  caret-color: white !important;
+  color: white !important;
+}
+
+
+.custom-dd select {
+  width: 100%;
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #d3d3d3 !important;
+  color: rgb(255, 255, 255);
+  padding: 0;
+  padding-bottom: 8px;
+}
+
+.custom-dd option {
+  padding: 1rem;
+  outline: none;
+  border: transparent;
+  background-color: rgba(0, 12, 2, 0.89);
+}
+
+.custom-dd .form-select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-size: 30px 30px;
+  background-position: right 2px center;
+}
+
+/* Mutli Option Dropdown */
+
+.multi-dd {
+  max-width: 500px;
+  width: 100%;
+  color: white;
+}
+
+.multi-dd .multi-select__input {
+  caret-color: white !important;
+  color: white !important;
+}
+
+.multi-dd .multi-select__placeholder {
+  color: rgb(181, 181, 181);
+}
+
+.multi-dd .multi-select__control {
+  background-color: transparent !important;
+  border-radius: 0;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid #d3d3d3 !important;
+}
+
+.multi-dd .multi-select__indicator-separator {
+  display: none;
+}
+
+.multi-dd .multi-select__placeholder,
+.multi-dd .multi-select__value-container,
+.multi-dd .multi-select__input-container {
+  padding: 0;
+  margin: 0;
+}
+
+.multi-dd .multi-select__menu-list {
+  background-color: rgba(52, 78, 65, 1);
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.711);
+  padding: 0;
+}
+
+.multi-dd .multi-select__option {
+  background-color: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.multi-dd .multi-select__option:last-child {
+  border-bottom: none;
+}
+
+.multi-dd .multi-select__multi-value {
+  background-color: rgba(217, 217, 217, 1);
+  color: black;
+  font-weight: 600;
+}
+
+.multi-dd .multi-select__multi-value:nth-last-child(2) {
+  margin-right: 10px;
+}
+
+.multi-dd .multi-select__multi-value__remove:hover {
+  background-color: rgba(217, 217, 217, 1);
+}
+
+.multi-dd .multi-select__multi-value__remove svg {
+  background-color: rgba(52, 78, 65, 1);
+  color: white;
+  height: 15px;
+  width: 15px;
+  padding: 2px;
+  border-radius: 10px;
+}
+
+
+.multi-select__clear-indicator {
+  color: white!important;
+  cursor: pointer;
+}

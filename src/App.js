@@ -11,8 +11,9 @@ import { isAuth } from "./auth/Auth";
 import Home from "./pages/Public/Home/Home";
 import Login from "./pages/Public/Login/Login";
 import Register from "./pages/Public/Register/Register";
-
-const Dashboard = () => <h1>Dashboard (Private)</h1>;
+import Intro from "./pages/Private/IntroScreen/Intro";
+import Dashboard from "./pages/Private/Dashboard/Dashboard";
+import Profile from "./pages/Private/Profile/Profile";
 
 const WithNav = () => {
   return (
@@ -23,19 +24,19 @@ const WithNav = () => {
   );
 };
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = ({ comp: Component }) => {
   return isAuth.isAuthenticated === true ? (
-    children
+    <Component />
   ) : (
     <Navigate to="/login" replace />
   );
 };
 
-const PublicRoute = ({ children }) => {
-  return isAuth.isAuthenticated === false ? (
-    children
-  ) : (
+const PublicRoute = ({ comp: Component }) => {
+  return isAuth.isAuthenticated === true ? (
     <Navigate to="/dashboard" replace />
+  ) : (
+    <Component />
   );
 };
 
@@ -44,35 +45,16 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route
-            exact
-            path="/login"
-            element={
-              <PublicRoute>
-                <Login />
-              </PublicRoute>
-            }
-          />
-          <Route
-            exact
-            path="/register"
-            element={
-              <PublicRoute>
-                <Register />
-              </PublicRoute>
-            }
-          />
+          <Route exact path="/login" element={<PublicRoute comp={Login} />} />
+          <Route path="/register" element={<PublicRoute comp={Register} />} />
           <Route element={<WithNav />}>
-            <Route path="/" element={<Home />} />
             <Route
-              exact
               path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
+              element={<PrivateRoute comp={Dashboard} />}
             />
+            <Route path="/profile" element={<PrivateRoute comp={Profile} />} />
+            <Route path="/intro" element={<PrivateRoute comp={Intro} />} />
+            <Route path="/" element={<Home />} />
           </Route>
         </Routes>
       </BrowserRouter>

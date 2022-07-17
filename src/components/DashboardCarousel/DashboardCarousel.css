@@ -1,0 +1,16 @@
+.carousel-card {
+  background-color: white;
+  border: 1px solid;
+  text-align: center;
+  border-radius: 15px;
+  margin: 5% 10%;
+  box-shadow: -2px 2px 3px 4px rgba(58, 90, 64, 0.6);
+}
+
+.react-multiple-carousel__arrow--left {
+  left: 0;
+}
+
+.react-multiple-carousel__arrow--right {
+  right: 0;
+}

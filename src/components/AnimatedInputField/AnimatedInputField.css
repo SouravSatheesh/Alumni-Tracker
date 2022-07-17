@@ -1,0 +1,99 @@
+.animated-in {
+  position: relative;
+  margin: 20px 50px 0 0;
+  max-width: 350px;
+  width: 100%;
+}
+
+.animated-in-label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  color: rgb(181, 181, 181);
+  transition: 0.2s all;
+  cursor: text;
+}
+
+.animated-in .animated-in-ip {
+  font-size: 18px;
+  border: none;
+  padding: 10px 0 4px 0;
+  border-bottom: 2px solid #d3d3d3 !important;
+  color: white !important;
+  border-radius: 0;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+.animated-in-ip:invalid {
+  outline: 0;
+}
+
+.animated-in-ip:focus ~ .animated-in-label,
+.animate-input .animated-in-label {
+  font-size: 14px;
+  top: -14px;
+  transform: none;
+}
+
+.animated-in .form-control::-webkit-calendar-picker-indicator {
+  filter: invert(87%) sepia(47%) saturate(17%) hue-rotate(336deg)
+    brightness(107%) contrast(103%);
+}
+
+.animated-in textarea.form-control {
+  background-color: rgba(67, 62, 61, 0.26) !important;
+  resize: none;
+  padding: 10px;
+}
+
+.animated-in textarea ~ .animated-in-label {
+  top: 5px;
+  left: 5px;
+  transform: none;
+}
+
+.animated-in textarea:focus ~ .animated-in-label,
+.animate-input textarea ~ .animated-in-label {
+  font-size: 14px;
+  left: 0;
+  top: -24px;
+  transform: none;
+}
+
+.animated-in textarea.form-control::-webkit-scrollbar {
+  width: 4px;
+}
+.animated-in textarea.form-control::-webkit-scrollbar-thumb {
+  background: rgb(181, 181, 181);
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+.animated-in textarea.form-control::-webkit-scrollbar-track {
+  background: transparent;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+.add-experience-button > div{
+  font-weight: 600;
+  background-color: rgba(58, 90, 64, 1);
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: white;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.769);
+  cursor: pointer;
+}
+
+.add-experience-button {
+  color: rgba(88, 129, 87, 1);
+  font-weight: 500;
+}

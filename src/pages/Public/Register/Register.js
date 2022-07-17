@@ -28,7 +28,8 @@ function Register() {
 
   const handleLogin = () => {
     isAuth.login().then(() => {
-      navigate("/dashboard");
+      isAuth.userType = userType;
+      navigate("/intro");
     });
     // console.log(credentials);
   };

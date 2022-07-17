@@ -1,0 +1,137 @@
+.student-main {
+  background-color: #dad7cd;
+  min-height: 100vh;
+  padding-top: 8vh;
+  user-select: none;
+  padding-bottom: 15vh;
+}
+
+.student-container {
+  width: 80%;
+  margin: auto;
+}
+
+.student-heading {
+  width: fit-content;
+  color: black;
+  font-weight: 500;
+  font-size: calc(1rem + 2vw);
+  margin-bottom: 20px;
+}
+
+.student-heading:after {
+  content: "";
+  display: block;
+  width: 70%;
+  border-bottom: 4px solid rgba(88, 129, 87, 0.893);
+}
+
+.prof-cnt {
+  width: 100%;
+}
+
+.profile-left {
+  width: 60%;
+}
+
+.profile-right {
+  padding-top: 20px;
+  margin-left: 50px;
+  width: 30%;
+}
+
+.profile-right .profile-main-card {
+  margin: auto;
+}
+
+.student-attributes {
+  color: #3a5a40;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.student-pinfo-heading {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.student-pinfos {
+  color: #3a5a40;
+  width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 26px;
+}
+
+.student-pinfos:after {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: 4px;
+  border-bottom: 2px solid #344e41;
+}
+
+p + .address-box {
+  margin-bottom: 10px;
+}
+
+.address-box {
+  border: 1.1px solid #344e41;
+  padding: 15px;
+  width: 80%;
+  min-height: 150px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.links-box {
+  border: 1px solid #344e41;
+  height: 100px;
+  width: 555px;
+  background-color: white;
+  border-radius: 7px 7px 0 0;
+}
+
+.interest-box {
+  border: 1px solid #344e41;
+  background-color: #a3b18a;
+  padding: 3px 5px 3px 5px;
+  border-radius: 5px;
+  color: black;
+}
+
+.student-subheading {
+  padding-top: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+.student-values {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.resume-button {
+  color: white;
+  background-color: #3a5a40;
+  padding: 5px 10px 5px 10px;
+  border: none;
+  border-radius: 20px;
+  width: 200px;
+}
+
+.update-button-div {
+  text-align: center;
+  padding-top: 100px;
+}
+
+.update-button {
+  color: white;
+  background-color: #3a5a40;
+  padding: 5px 10px 5px 10px;
+  border: none;
+  border-radius: 10px;
+  width: 150px;
+}

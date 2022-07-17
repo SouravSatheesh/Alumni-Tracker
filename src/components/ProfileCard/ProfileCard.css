@@ -1,0 +1,35 @@
+.profile-main-card {
+  background-color: white;
+  padding: 60px 0;
+  width: 80%;
+  aspect-ratio: 5/4;
+  margin-left: auto;
+  margin-top: 40px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 5px 9px rgba(58, 90, 64, 0.316);
+  text-align: center;
+  border: 5px solid rgba(52, 78, 65, 1);
+}
+
+.profile-main-card img {
+  border-inline: 3px solid rgba(52, 78, 65, 1);
+  border-radius: 50%;
+  width: 60%;
+}
+
+.profile-main-card .name {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.profile-main-card .department {
+  font-size: 22px;
+  font-weight: 500;
+  color: rgba(115, 105, 105, 1);
+}
+
+.profile-main-card .batch {
+  font-weight: 500;
+  line-height: 20px;
+  color: rgba(115, 105, 105, 1);
+}
