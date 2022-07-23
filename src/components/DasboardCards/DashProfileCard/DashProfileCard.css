@@ -1,0 +1,48 @@
+.d-prof-card {
+  height: 100%;
+  width: 101%;
+  margin-top: -1px;
+  margin-left: -0.5%;
+  border-radius: 15px;
+}
+
+.d-p-card-upper {
+  height: 50%;
+  border-radius: 15px 15px 0 0 !important;
+  border-radius: inherit;
+  background-color: #3a5a40;
+  position: relative;
+}
+
+.d-p-card-upper img {
+  height: 110%;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border-inline: 2px solid;
+}
+
+.d-p-card-lower {
+  margin-top: 22%;
+}
+
+.d-p-card-lower .name {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 140%;
+}
+
+.d-p-card-lower .department {
+  color: #736969;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.d-p-card-lower .batch {
+  color: #736969;
+  font-size: 14px;
+  line-height: 100%;
+}

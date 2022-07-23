@@ -1,9 +1,11 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import DashBlogCard from "../DasboardCards/DashBlogCard/DashBlogCard";
+import DashProfilCard from "../DasboardCards/DashProfileCard/DashProfileCard";
 import "./DashboardCarousel.css";
 
-function DashboardCarousel({ cardCount, ...props }) {
+function DashboardCarousel({ cardCount, type, ...props }) {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -25,12 +27,37 @@ function DashboardCarousel({ cardCount, ...props }) {
   };
   return (
     <div {...props}>
-      <Carousel responsive={responsive} infinite={true}>
-        <div className="carousel-card">Item 1</div>
-        <div className="carousel-card">Item 2</div>
-        <div className="carousel-card">Item 3</div>
-        <div className="carousel-card">Item 4</div>
-      </Carousel>
+      {type?.toLowerCase() === "blog" ? (
+        <Carousel responsive={responsive} infinite={true}>
+          <div className="carousel-card">
+            <DashBlogCard />
+          </div>
+          <div className="carousel-card">
+            <DashBlogCard />
+          </div>
+          <div className="carousel-card">
+            <DashBlogCard />
+          </div>
+          <div className="carousel-card">
+            <DashBlogCard />
+          </div>
+        </Carousel>
+      ) : (
+        <Carousel responsive={responsive} infinite={true}>
+          <div className="carousel-card">
+            <DashProfilCard />
+          </div>
+          <div className="carousel-card">
+            <DashProfilCard />
+          </div>
+          <div className="carousel-card">
+            <DashProfilCard />
+          </div>
+          <div className="carousel-card">
+            <DashProfilCard />
+          </div>
+        </Carousel>
+      )}
     </div>
   );
 }

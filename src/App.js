@@ -40,6 +40,9 @@ const PublicRoute = ({ comp: Component }) => {
   );
 };
 
+const EnableRegisterForm = () => {}
+
+
 function App() {
   return (
     <>
@@ -49,13 +52,23 @@ function App() {
           <Route path="/register" element={<PublicRoute comp={Register} />} />
           <Route element={<WithNav />}>
             <Route
+              path="/intro"
+              element={
+                isAuth.registering === true ? (
+                  <PublicRoute comp={Intro} />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+            <Route
               path="/dashboard"
               element={<PrivateRoute comp={Dashboard} />}
             />
             <Route path="/profile" element={<PrivateRoute comp={Profile} />} />
-            <Route path="/intro" element={<PrivateRoute comp={Intro} />} />
             <Route path="/" element={<Home />} />
           </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </>

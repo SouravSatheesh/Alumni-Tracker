@@ -5,6 +5,7 @@
   border-radius: 15px;
   margin: 5% 10%;
   box-shadow: -2px 2px 3px 4px rgba(58, 90, 64, 0.6);
+  cursor: pointer;
 }
 
 .react-multiple-carousel__arrow--left {

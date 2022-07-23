@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import AnimatedInputField from "../../../components/AnimatedInputField/AnimatedInputField";
 import avatarIcon from "../../../assets/images/avatar.png";
 import uploadIcon from "../../../assets/icons/upload-file.svg";
-import {
-  CustomDropdown,
-  MutliDropdown,
-} from "../../../components/CustomDropdown/CustomDropdown";
-import { Link } from "react-router-dom";
+import { MutliDropdown } from "../../../components/CustomDropdown/CustomDropdown";
+import { useNavigate } from "react-router-dom";
+import { isAuth } from "../../../auth/Auth";
 
 function StudentRegistration() {
+  const navigate = useNavigate();
   const [resumeFileName, setResumeFileName] = useState("");
   const [profilePic, setProfilePic] = useState(avatarIcon);
 
@@ -26,6 +25,13 @@ function StudentRegistration() {
     { value: "3", label: "Third year" },
     { value: "4", label: "Fourth year" },
   ];
+
+  const onRegister = () => {
+    isAuth.login().then(() => {
+      isAuth.isAuthenticated = true;
+      navigate("/dashboard");
+    });
+  };
 
   return (
     <div className="intro-main">
@@ -84,7 +90,7 @@ function StudentRegistration() {
             <div className="intro-form-inner">
               <div className="d-flex">
                 <AnimatedInputField name="degree" title="Degree" />
-                <AnimatedInputField name="branch" title="Branch" />
+                <AnimatedInputField name="department" title="Department" />
                 <AnimatedInputField name="cgpa" title="CGPA" />
               </div>
               <div className="d-flex">
@@ -128,9 +134,9 @@ function StudentRegistration() {
             </div>
           </div>
         </section>
-        <Link to="/dashboard">
-          <div className="intro-reg-btn">register</div>
-        </Link>
+        <div className="intro-reg-btn" onClick={onRegister}>
+          register
+        </div>
       </div>
     </div>
   );

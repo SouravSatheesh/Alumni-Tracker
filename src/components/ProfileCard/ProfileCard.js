@@ -9,9 +9,9 @@ function ProfileCard({ className }) {
     >
       <img src={avatarIcon} alt="" />
       <div>
-        <div className="name">Sourav Satheesh</div>
+        <div className="name">Natasha Mathew</div>
         <div className="department">Computer Science</div>
-        <div className="batch">2023 Batch</div>
+        <div className="batch">1968 Batch</div>
       </div>
     </div>
   );

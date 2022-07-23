@@ -1,6 +1,6 @@
 .profile-main-card {
   background-color: white;
-  padding: 60px 0;
+  padding: 50px 0;
   width: 80%;
   aspect-ratio: 5/4;
   margin-left: auto;
@@ -15,9 +15,11 @@
   border-inline: 3px solid rgba(52, 78, 65, 1);
   border-radius: 50%;
   width: 60%;
+  margin-bottom: 5%;
 }
 
 .profile-main-card .name {
+  color: black;
   font-size: 30px;
   font-weight: 500;
 }

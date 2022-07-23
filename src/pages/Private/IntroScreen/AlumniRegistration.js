@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import AnimatedInputField from "../../../components/AnimatedInputField/AnimatedInputField";
 import avatarIcon from "../../../assets/images/avatar.png";
 import { MutliDropdown } from "../../../components/CustomDropdown/CustomDropdown";
-import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { isAuth } from "../../../auth/Auth";
 
 function AluminiRegistration() {
+  const navigate = useNavigate();
+
   const [profilePic, setProfilePic] = useState(avatarIcon);
   const [workCount, setWorkCount] = useState(1);
   const [workExp, setWorkExp] = useState([
@@ -54,6 +57,13 @@ function AluminiRegistration() {
     { value: "dataScience", label: "Data Science" },
     { value: "blockChain", label: "Block Chain" },
   ];
+
+  const onRegister = () => {
+    isAuth.login().then(() => {
+      isAuth.isAuthenticated = true;
+      navigate("/dashboard");
+    });
+  };
 
   useEffect(() => {}, [workCount]);
 
@@ -105,7 +115,7 @@ function AluminiRegistration() {
             <div className="intro-form-inner">
               <div className="d-flex">
                 <AnimatedInputField name="degree" title="Degree" />
-                <AnimatedInputField name="branch" title="Branch" />
+                <AnimatedInputField name="department" title="Department" />
                 <AnimatedInputField
                   name="yearOfGraduation"
                   title="Year of Graduation"
@@ -193,9 +203,9 @@ function AluminiRegistration() {
           </div>
         </section>
 
-        <Link to="/dashboard">
-          <div className="intro-reg-btn">register</div>
-        </Link>
+        <div className="intro-reg-btn" onClick={onRegister}>
+          register
+        </div>
       </div>
     </div>
   );

@@ -3,8 +3,9 @@ import { createContext, useContext } from "react";
 const authContext = createContext();
 
 export const isAuth = {
-  isAuthenticated: true,
-  userType: "alumni",
+  isAuthenticated: false,
+  userType: "student",
+  registering: false,
   login() {
     return new Promise((res) => {
       this.isAuthenticated = true;

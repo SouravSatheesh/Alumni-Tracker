@@ -26,11 +26,11 @@ function Register() {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = () => {
-    isAuth.login().then(() => {
-      isAuth.userType = userType;
-      navigate("/intro");
-    });
+  const handleRegister = () => {
+    isAuth.userType = userType;
+    isAuth.registering = true;
+    console.log(isAuth);
+    navigate("/intro");
     // console.log(credentials);
   };
 
@@ -123,7 +123,7 @@ function Register() {
             />
           </div>
 
-          <div className="login-button" onClick={handleLogin}>
+          <div className="login-button" onClick={handleRegister}>
             REGISTER
           </div>
           <p className="bottom-line">
