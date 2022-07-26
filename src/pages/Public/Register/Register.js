@@ -8,6 +8,7 @@ import { AiFillEye } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { isAuth } from "../../../auth/Auth";
 import { FaHome } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 function Register() {
   const navigate = useNavigate();
@@ -27,11 +28,40 @@ function Register() {
   };
 
   const handleRegister = () => {
-    isAuth.userType = userType;
-    isAuth.registering = true;
-    console.log(isAuth);
-    navigate("/intro");
-    // console.log(credentials);
+    if (
+      !credentials.name ||
+      !credentials.email ||
+      !credentials.password ||
+      !credentials.confirmPassword
+    )
+      toast.warning("Please fill all fields");
+    else if (
+      !credentials.email
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    )
+      toast.warning("Invalid email");
+    else if (credentials.password.length < 6)
+      toast.warning("Password too short");
+    else if (credentials.password !== credentials.confirmPassword)
+      toast.warning("Passwords do not match");
+    else {
+      isAuth.userType = userType;
+      isAuth.registering = true;
+      var name = credentials.name;
+      var firstName = name.substring(0, name.indexOf(" "));
+      var lastName = name.substring(name.indexOf(" ") + 1);
+      navigate("/intro", {
+        state: {
+          creds: credentials,
+          firstName: firstName,
+          lastName: lastName,
+          userType: isAuth.userType,
+        },
+      });
+    }
   };
 
   const togglePassword = (param) => {

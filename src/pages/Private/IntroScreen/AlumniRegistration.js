@@ -4,9 +4,11 @@ import avatarIcon from "../../../assets/images/avatar.png";
 import { MutliDropdown } from "../../../components/CustomDropdown/CustomDropdown";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import axios from "../../../components/axios";
+import { toast } from "react-toastify";
 import { isAuth } from "../../../auth/Auth";
 
-function AluminiRegistration() {
+function AluminiRegistration({ state }) {
   const navigate = useNavigate();
 
   const [profilePic, setProfilePic] = useState(avatarIcon);
@@ -15,17 +17,53 @@ function AluminiRegistration() {
     {
       company: "",
       role: "",
-      startDate: "",
-      endDate: "",
-      description: "",
+      from: 0,
+      to: 0,
     },
   ]);
 
+  const [formDetails, setFormDetails] = useState({
+    userId: "",
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    areasOfInterest: [],
+    department: "",
+    yearGraduation: "",
+    degree: "",
+    workExperience: [],
+  });
+
+  const InterestOptions = [
+    { value: "Web Development", label: "Web Development" },
+    { value: "App Development", label: "App Development" },
+    { value: "Machine Learning", label: "Machine Learning" },
+    { value: "Data Science", label: "Data Science" },
+    { value: "Block Chain", label: "Block Chain" },
+  ];
+
+  const handleChange = (e) => {
+    setFormDetails({ ...formDetails, [e.target.name]: e.target.value });
+  };
+
   const handleWorkExpChange = (e, index) => {
     const newWorkExp = [...workExp];
-    newWorkExp[index][e.target.name] = e.target.value;
+    if (e.target.name === "to" || e.target.name === "from") {
+      newWorkExp[index][e.target.name] = Number(e.target.value);
+    } else {
+      newWorkExp[index][e.target.name] = e.target.value;
+    }
     setWorkExp(newWorkExp);
-    console.log(newWorkExp);
+    setFormDetails({ ...formDetails, workExperience: newWorkExp });
+  };
+
+  const handleInterstChange = (e) => {
+    const areas = [];
+    e.forEach((item) => {
+      areas.push(item.label);
+    });
+    setFormDetails({ ...formDetails, areasOfInterest: areas });
   };
 
   const addNewExp = () => {
@@ -35,9 +73,8 @@ function AluminiRegistration() {
       {
         company: "",
         role: "",
-        startDate: "",
-        endDate: "",
-        description: "",
+        from: 0,
+        to: 0,
       },
     ]);
   };
@@ -47,25 +84,44 @@ function AluminiRegistration() {
     newWorkExp.splice(index, 1);
     setWorkExp(newWorkExp);
     setWorkCount(workCount - 1);
-    console.log(newWorkExp);
   };
 
-  const InterestOptions = [
-    { value: "webevelopment", label: "Web Development" },
-    { value: "appevelopment", label: "App Development" },
-    { value: "machineLearning", label: "Machine Learning" },
-    { value: "dataScience", label: "Data Science" },
-    { value: "blockChain", label: "Block Chain" },
-  ];
+  const onRegister = async () => {
+    await axios({
+      method: "post",
+      url: "alumni/signup",
+      data: formDetails,
+    })
+      .then((res) => {
+        isAuth.registering = false;
+        toast.success("Registration Successful !!");
+        navigate("/login");
+      })
+      .catch((e) => {
+        toast.error("Something went wrong !!");
+      });
+  };
 
-  const onRegister = () => {
-    isAuth.login().then(() => {
-      isAuth.isAuthenticated = true;
-      navigate("/dashboard");
+  useEffect(() => {}, [workCount, formDetails]);
+
+  useEffect(() => {
+    const generateUserId = () => {
+      let userId = "";
+      const possible =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for (let i = 0; i < 5; i++) {
+        userId += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      return userId;
+    };
+
+    setFormDetails({
+      ...formDetails,
+      email: state.creds.email,
+      password: state.creds.password,
+      userId: generateUserId(),
     });
-  };
-
-  useEffect(() => {}, [workCount]);
+  }, []);
 
   return (
     <div className="intro-main">
@@ -78,12 +134,29 @@ function AluminiRegistration() {
               <div className="head">Personal Information</div>
               <div className="intro-form-inner">
                 <div className="d-flex">
-                  <AnimatedInputField name="firstName" title="First Name" />
-                  <AnimatedInputField name="lastName" title="Last Name" />
+                  <AnimatedInputField
+                    name="firstName"
+                    title="First Name"
+                    onChange={handleChange}
+                  />
+                  <AnimatedInputField
+                    name="lastName"
+                    title="Last Name"
+                    onChange={handleChange}
+                  />
                 </div>
-                <div className="d-flex">
-                  <AnimatedInputField name="email" title="Email" />
-                  <AnimatedInputField name="phoneNumber" title="Phone Number" />
+                <div className="d-flex w-50">
+                  <AnimatedInputField
+                    name="email"
+                    title="Email"
+                    disabled
+                    defaultValue={state.creds.email}
+                  />
+                  {/* <AnimatedInputField
+                    name="phoneNumber"
+                    title="Phone Number"
+                    onChange={handleChange}
+                  /> */}
                 </div>
               </div>
             </section>
@@ -114,11 +187,20 @@ function AluminiRegistration() {
             <div className="sub-head">Undergraduate Degree</div>
             <div className="intro-form-inner">
               <div className="d-flex">
-                <AnimatedInputField name="degree" title="Degree" />
-                <AnimatedInputField name="department" title="Department" />
                 <AnimatedInputField
-                  name="yearOfGraduation"
+                  name="degree"
+                  title="Degree"
+                  onChange={handleChange}
+                />
+                <AnimatedInputField
+                  name="department"
+                  title="Department"
+                  onChange={handleChange}
+                />
+                <AnimatedInputField
+                  name="yearGraduation"
                   title="Year of Graduation"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -149,9 +231,12 @@ function AluminiRegistration() {
                     />
                     <AnimatedInputField
                       id={`startDate${i}`}
-                      type="date"
-                      name="startDate"
-                      title="From"
+                      name="from"
+                      title="From (year)"
+                      type="number"
+                      min="1900"
+                      max="2099"
+                      step="1"
                       onChange={(e) => handleWorkExpChange(e, i)}
                     />
                   </div>
@@ -164,14 +249,17 @@ function AluminiRegistration() {
                     />
                     <AnimatedInputField
                       id={`endDate${i}`}
-                      type="date"
-                      name="endDate"
-                      title="To"
+                      type="number"
+                      min="1900"
+                      max="2099"
+                      step="1"
+                      name="to"
+                      title="To (year)"
                       onChange={(e) => handleWorkExpChange(e, i)}
                     />
                   </div>
-                  <div className="d-flex align-items-end">
-                    <AnimatedInputField
+                  <div className="d-flex align-items-end mt-5 ms-4">
+                    {/* <AnimatedInputField
                       id={`description${i}`}
                       as="textarea"
                       name="description"
@@ -179,7 +267,7 @@ function AluminiRegistration() {
                       rows={4}
                       className="mt-5"
                       onChange={(e) => handleWorkExpChange(e, i)}
-                    />
+                    /> */}
                     {workCount > 1 && (
                       <div
                         className="d-flex align-items-center delete-experience"
@@ -199,7 +287,11 @@ function AluminiRegistration() {
         <section className="intro-section mt-5">
           <div className="head">Domain</div>
           <div className="m-4 mt-3">
-            <MutliDropdown title="Domain" options={InterestOptions} />
+            <MutliDropdown
+              title="Domain"
+              options={InterestOptions}
+              onChange={(e) => handleInterstChange(e)}
+            />
           </div>
         </section>
 

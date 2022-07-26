@@ -5,7 +5,7 @@ import DashBlogCard from "../DasboardCards/DashBlogCard/DashBlogCard";
 import DashProfilCard from "../DasboardCards/DashProfileCard/DashProfileCard";
 import "./DashboardCarousel.css";
 
-function DashboardCarousel({ cardCount, type, ...props }) {
+function DashboardCarousel({ cardCount, type, data, ...props }) {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -44,18 +44,11 @@ function DashboardCarousel({ cardCount, type, ...props }) {
         </Carousel>
       ) : (
         <Carousel responsive={responsive} infinite={true}>
-          <div className="carousel-card">
-            <DashProfilCard />
-          </div>
-          <div className="carousel-card">
-            <DashProfilCard />
-          </div>
-          <div className="carousel-card">
-            <DashProfilCard />
-          </div>
-          <div className="carousel-card">
-            <DashProfilCard />
-          </div>
+          {data.map((user) => (
+            <div className="carousel-card">
+              <DashProfilCard userData={user} />
+            </div>
+          ))}
         </Carousel>
       )}
     </div>

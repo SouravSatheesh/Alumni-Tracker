@@ -1,0 +1,32 @@
+.blog-card-main {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 20px 0;
+  position: relative;
+  padding-bottom: 70px;
+}
+
+.blog-card-title {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+.blog-card-domain {
+  font-size: 16px;
+  color: rgba(115, 105, 105, 1);
+}
+
+.blog-card-content {
+  margin-top: 10px;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.blog-card-author {
+  font-size: 20px;
+  margin-top: 20px;
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+}

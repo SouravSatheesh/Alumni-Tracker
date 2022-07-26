@@ -65,13 +65,13 @@
   justify-content: center;
   text-transform: uppercase;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
-    url("https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
+    url("https://thumbs.dreamstime.com/b/projects-concept-black-chalkboard-d-rendering-handwritten-top-view-office-desk-lot-business-office-supplies-79906734.jpg");
   background: -webkit-linear-gradient(
       to right,
       rgba(0, 0, 0, 0.8),
       rgba(0, 0, 0, 0.5)
     ),
-    url("https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
+    url("https://thumbs.dreamstime.com/b/projects-concept-black-chalkboard-d-rendering-handwritten-top-view-office-desk-lot-business-office-supplies-79906734.jpg");
   background-size: cover;
   color: white;
   font-size: 30px;
@@ -88,4 +88,14 @@
 
 .dash-nav-section > div:active {
   transform: scale(1);
+}
+
+.explore-btn {
+  font-size: 20px;
+  margin-right: 30px;
+  background-color: rgba(0, 0, 0, 0.489);
+  color: white;
+  padding: 8px 30px;
+  border-radius: 10px;
+  cursor: pointer;
 }

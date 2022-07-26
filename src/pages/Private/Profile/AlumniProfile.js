@@ -1,8 +1,7 @@
-import React from "react";
-import { AiOutlineFileDone } from "react-icons/ai";
+import React, { useEffect } from "react";
 import ProfileCard from "../../../components/ProfileCard/ProfileCard";
 
-function AlumniProfile() {
+function AlumniProfile({ data }) {
   return (
     <div className="profile-main">
       <div className="profile-container">
@@ -13,27 +12,22 @@ function AlumniProfile() {
             <div className="profile-attributes">
               <div className="profile-values">
                 <div>
-                  <p className="profile-pinfos">First Name</p>
-                  <p className="profile-pinfos">Last Name</p>
+                  <p className="profile-pinfos">{data.firstName}</p>
+                  <p className="profile-pinfos">{data.lastName}</p>
                 </div>
                 <div>
-                  <p className="profile-pinfos">Phone Number</p>
-                  <p className="profile-pinfos">janedoe@gmail.com</p>
+                  {/* <p className="profile-pinfos">Phone Number</p> */}
+                  <p className="profile-pinfos">{data.email}</p>
                 </div>
               </div>
               <div>
                 <div className="mb-2">Address</div>
-                <div className="address-box">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eligendi quas pariatur minus aperiam, totam tempora optio
-                  accusantium illo quam culpa odio dolores, officia tempore eius
-                  a. Deserunt rem recusandae quibusdam!
-                </div>
+                <div className="address-box">{data.addres}</div>
               </div>
             </div>
           </div>
           <div className="profile-right">
-            <ProfileCard className="mt-4" />
+            <ProfileCard className="mt-4" data={data} />
           </div>
         </div>
 
@@ -44,42 +38,40 @@ function AlumniProfile() {
           <div className="profile-subheading mb-3">Undergraduate Degree</div>
           <div>
             <div className="profile-values">
-              <p className="profile-pinfos">Degree</p>
-              <p className="profile-pinfos">Branch</p>
-              <p className="profile-pinfos">CGPA</p>
-            </div>
-            <div className="profile-values">
-              <p className="profile-pinfos">Year of Graduation</p>
-              <p className="profile-pinfos">Year of Study</p>
+              <p className="profile-pinfos">BTech</p>
+              <p className="profile-pinfos">{data.department}</p>
+              <p className="profile-pinfos">{data.yearGraduation}</p>
             </div>
           </div>
         </div>
 
         <p className="profile-pinfo-heading mt-5">Work Experience</p>
-        <div className="profile-attributes">
-          <div className="profile-values">
-            <div>
-              <p className="profile-pinfos">Company/Organisation</p>
-              <p className="profile-pinfos">From</p>
-            </div>
-            <div>
-              <p className="profile-pinfos">Role/Job Title</p>
-              <p className="profile-pinfos">To</p>
-            </div>
-          </div>
-          <div>
-            <div className="address-box w-50">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-              quas pariatur minus aperiam, totam tempora optio accusantium illo
-              quam culpa odio dolores, officia tempore eius a. Deserunt rem
-              recusandae quibusdam!
-            </div>
-          </div>
+        <div className="profile-attributes mt-5">
+          {data.workExperience?.map((exp) => {
+            return (
+              <>
+                <div className="profile-values">
+                  <div>
+                    <p className="profile-pinfos">{exp.company}</p>
+                    <p className="profile-pinfos">{exp.from}</p>
+                  </div>
+                  <div>
+                    <p className="profile-pinfos">{exp.role}</p>
+                    <p className="profile-pinfos">{exp.to}</p>
+                  </div>
+                </div>
+                {/* <div>
+                  <div className="address-box w-50">Random Job Description</div>
+                </div> */}
+              </>
+            );
+          })}
         </div>
 
         <p className="profile-pinfo-heading mt-5">Publications</p>
         <div className="profile-attributes">
-          <div className="profile-values">
+          No publication uploaded
+          {/* <div className="profile-values">
             <div>
               <p className="profile-pinfos">Title</p>
               <div className="publication-cnt">
@@ -95,32 +87,28 @@ function AlumniProfile() {
               <p className="profile-pinfos">Domain</p>
               <p className="profile-pinfos">Links</p>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <p className="profile-pinfo-heading mt-4">Domain</p>
         <div className="profile-attributes">
           <div className="profile-values">
-            <p className="interest-box">Machine Learning</p>
-            <p className="interest-box">Python</p>
+            {data.areasOfInterest?.map((interest) => (
+              <p className="interest-box">{interest}</p>
+            ))}
           </div>
         </div>
 
         <p className="profile-pinfo-heading mt-4">Relevant Links</p>
         <div className="profile-attributes">
           <div className="profile-values">
-            <p className="profile-pinfos">Github</p>
-            <p className="profile-pinfos">LinkedIn</p>
+            <p className="profile-pinfos">Github: none</p>
+            <p className="profile-pinfos">LinkedIn: none</p>
           </div>
 
           <div>
             <p>Others (if any)</p>
-            <div className="links-box">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reiciendis eveniet magnam, quam in commodi ea adipisci mollitia
-              sunt, harum ducimus accusantium ut at possimus ad pariatur iusto
-              fugiat? Eius, illum!
-            </div>
+            <div className="links-box"></div>
           </div>
         </div>
 

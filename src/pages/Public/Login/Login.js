@@ -7,11 +7,16 @@ import { FaHome } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { isAuth } from "../../../auth/Auth";
 import { useRef } from "react";
+import { toast } from "react-toastify";
+import { useStateValue } from "../../../reducer/StateProvider";
+import axios from "../../../components/axios";
 
 function Login() {
   const navigate = useNavigate();
   const passToggleRef = useRef();
   const rememberRef = useRef();
+
+  const [{ userData, userId }, dispatch] = useStateValue();
 
   const [credentials, setCredentials] = React.useState({
     email: "",
@@ -22,12 +27,49 @@ function Login() {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = () => {
-    isAuth.login().then(() => {
-      navigate("/dashboard");
-    });
-    // console.log(rememberRef.current.checked);
-    // console.log(credentials);
+  const handleLogin = async () => {
+    await axios({
+      method: "post",
+      url: "login",
+      data: {
+        email: credentials.email,
+        password: credentials.password,
+      },
+    })
+      .then(async (res) => {
+        if (res.status === 200) {
+          isAuth.login(res.data.token, res.data.userId, res.data.userType);
+          isAuth.userType = res.data.userType.toLowerCase();
+          dispatch({
+            type: "SET_USER_ID",
+            item: res.data.userId,
+          });
+          await axios({
+            method: "get",
+            url:
+              res.data.userType.toLowerCase() === "student"
+                ? `student/student_details?userId=${res.data.userId}`
+                : `alumni/alumni_details?userId=${res.data.userId}`,
+            headers: {
+              Authorization: `bearer ${res.data.token}`,
+            },
+          }).then((res) => {
+            if (res.status === 200) {
+              dispatch({
+                type: "SET_USER_DATA",
+                item: res.data,
+              });
+            }
+          });
+          toast.success("Login Successfull !!");
+          navigate("/dashboard");
+        } else {
+          toast.error("Something went wrong !!");
+        }
+      })
+      .catch((err) => {
+        toast.error(err.response.data.error);
+      });
   };
 
   const togglePassword = () => {

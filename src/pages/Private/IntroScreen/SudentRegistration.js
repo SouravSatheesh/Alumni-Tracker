@@ -1,15 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AnimatedInputField from "../../../components/AnimatedInputField/AnimatedInputField";
 import avatarIcon from "../../../assets/images/avatar.png";
 import uploadIcon from "../../../assets/icons/upload-file.svg";
 import { MutliDropdown } from "../../../components/CustomDropdown/CustomDropdown";
 import { useNavigate } from "react-router-dom";
 import { isAuth } from "../../../auth/Auth";
+import axios from "../../../components/axios";
+import { toast } from "react-toastify";
 
-function StudentRegistration() {
+function StudentRegistration({ state }) {
   const navigate = useNavigate();
   const [resumeFileName, setResumeFileName] = useState("");
   const [profilePic, setProfilePic] = useState(avatarIcon);
+
+  const [formDetails, setFormDetails] = useState({
+    userId: "",
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    areasOfInterest: [],
+    higherSecondary: { board: "", cgpa: 0 },
+    department: "",
+    expectedGraduationYear: 0,
+    yearOfJoining: 0,
+    degree: "",
+  });
+
+  const handleChange = (e) => {
+    const n = e.target.name;
+    if (
+      n === "cgpa" ||
+      n === "yearOfJoining" ||
+      n === "expectedGraduationYear"
+    ) {
+      setFormDetails({ ...formDetails, [n]: Number(e.target.value) });
+    } else {
+      setFormDetails({ ...formDetails, [e.target.name]: e.target.value });
+    }
+  };
+
+  const handleInterstChange = (e) => {
+    const areas = [];
+    e.forEach((item) => {
+      areas.push(item.label);
+    });
+    setFormDetails({ ...formDetails, areasOfInterest: areas });
+  };
+
+  const handleSecondary = (e) => {
+    setFormDetails({
+      ...formDetails,
+      higherSecondary: {
+        ...formDetails.higherSecondary,
+        [e.target.name]:
+          e.target.name === "cgpa" ? Number(e.target.value) : e.target.value,
+      },
+    });
+  };
 
   const InterestOptions = [
     { value: "webevelopment", label: "Web Development" },
@@ -19,19 +67,43 @@ function StudentRegistration() {
     { value: "blockChain", label: "Block Chain" },
   ];
 
-  const yearOptions = [
-    { value: "1", label: "First year" },
-    { value: "2", label: "Second year" },
-    { value: "3", label: "Third year" },
-    { value: "4", label: "Fourth year" },
-  ];
-
-  const onRegister = () => {
-    isAuth.login().then(() => {
-      isAuth.isAuthenticated = true;
-      navigate("/dashboard");
-    });
+  const onRegister = async () => {
+    await axios({
+      method: "post",
+      url: "student/signup",
+      data: formDetails,
+    })
+      .then((res) => {
+        isAuth.registering = false;
+        toast.success("Registration Successful !!");
+        navigate("/login");
+      })
+      .catch((e) => {
+        toast.error("Something went wrong !!");
+      });
   };
+
+  useEffect(() => {
+    const generateUserId = () => {
+      let userId = "";
+      const possible =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for (let i = 0; i < 5; i++) {
+        userId += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      return userId;
+    };
+
+    setFormDetails({
+      ...formDetails,
+      email: state.creds.email,
+      password: state.creds.password,
+      userId: generateUserId(),
+    });
+  }, []);
+
+  useEffect(() => {
+  }, [formDetails]);
 
   return (
     <div className="intro-main">
@@ -44,12 +116,29 @@ function StudentRegistration() {
               <div className="head">Personal Information</div>
               <div className="intro-form-inner">
                 <div className="d-flex">
-                  <AnimatedInputField name="firstName" title="First Name" />
-                  <AnimatedInputField name="lastName" title="Last Name" />
+                  <AnimatedInputField
+                    name="firstName"
+                    title="First Name"
+                    onChange={handleChange}
+                  />
+                  <AnimatedInputField
+                    name="lastName"
+                    title="Last Name"
+                    onChange={handleChange}
+                  />
                 </div>
-                <div className="d-flex">
-                  <AnimatedInputField name="email" title="Email" />
-                  <AnimatedInputField name="phoneNumber" title="Phone Number" />
+                <div className="d-flex w-50">
+                  <AnimatedInputField
+                    name="email"
+                    title="Email"
+                    disabled
+                    defaultValue={state.creds.email}
+                  />
+                  {/* <AnimatedInputField
+                    name="phoneNumber"
+                    title="Phone Number"
+                    onChange={handleChange}
+                  /> */}
                 </div>
               </div>
             </section>
@@ -80,8 +169,16 @@ function StudentRegistration() {
             <div className="sub-head">12th Grade</div>
             <div className="intro-form-inner">
               <div className="d-flex">
-                <AnimatedInputField name="board" title="Board" />
-                <AnimatedInputField name="percentage" title="Percentage" />
+                <AnimatedInputField
+                  name="board"
+                  title="Board"
+                  onChange={handleSecondary}
+                />
+                <AnimatedInputField
+                  name="cgpa"
+                  title="Percentage"
+                  onChange={handleSecondary}
+                />
               </div>
             </div>
           </div>
@@ -89,18 +186,32 @@ function StudentRegistration() {
             <div className="sub-head">Undergraduate Degree</div>
             <div className="intro-form-inner">
               <div className="d-flex">
-                <AnimatedInputField name="degree" title="Degree" />
-                <AnimatedInputField name="department" title="Department" />
-                <AnimatedInputField name="cgpa" title="CGPA" />
+                <AnimatedInputField
+                  name="degree"
+                  title="Degree"
+                  onChange={handleChange}
+                />
+                <AnimatedInputField
+                  name="department"
+                  title="Department"
+                  onChange={handleChange}
+                />
+                <AnimatedInputField
+                  name="cgpa"
+                  title="CGPA"
+                  onChange={handleChange}
+                />
               </div>
               <div className="d-flex">
                 <AnimatedInputField
                   name="yearOfJoining"
                   title="Year of Joining"
+                  onChange={handleChange}
                 />
                 <AnimatedInputField
-                  name="yearOfGraduation"
+                  name="expectedGraduationYear"
                   title="Year of Graduation"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -112,6 +223,7 @@ function StudentRegistration() {
             <MutliDropdown
               title="Areas of Interest"
               options={InterestOptions}
+              onChange={(e) => handleInterstChange(e)}
             />
           </div>
         </section>

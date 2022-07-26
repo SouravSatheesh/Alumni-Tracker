@@ -1,0 +1,38 @@
+.profile-view-card-main {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 20px 0;
+  position: relative;
+}
+
+.profile-view-card-main img {
+  height: 120px;
+}
+
+.prof-view-card-inner {
+  margin-left: 20px;
+}
+
+.pv-c-name {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 34px;
+}
+
+.pv-c-dept {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(115, 105, 105, 1);
+}
+
+.pv-c-batch {
+  font-size: 16px;
+  line-height: 10px;
+  color: rgba(115, 105, 105, 1);
+}
+
+.pv-c-domain {
+	font-size: 14px;
+	margin-top: 6px;
+}

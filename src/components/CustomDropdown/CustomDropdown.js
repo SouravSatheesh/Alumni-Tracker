@@ -36,7 +36,7 @@ export function CustomDropdown({ title, options }) {
   );
 }
 
-export function MutliDropdown({ title, options }) {
+export function MutliDropdown({ title, options, onChange }) {
   const DropdownIndicator = (props) => {
     return (
       <components.DropdownIndicator {...props}>
@@ -55,6 +55,7 @@ export function MutliDropdown({ title, options }) {
         options={options}
         noOptionsMessage={() => "Type and add a new option"}
         maxMenuHeight={210}
+        onChange={(e) => onChange(e)}
       />
     </div>
   );

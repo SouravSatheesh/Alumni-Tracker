@@ -1,8 +1,9 @@
 import React from "react";
+import { useEffect } from "react";
 import { AiOutlineFileDone } from "react-icons/ai";
 import ProfileCard from "../../../components/ProfileCard/ProfileCard";
 
-function StudentProfile() {
+function StudentProfile({ data }) {
   return (
     <div className="profile-main">
       <div className="profile-container">
@@ -13,27 +14,22 @@ function StudentProfile() {
             <div className="profile-attributes">
               <div className="profile-values">
                 <div>
-                  <p className="profile-pinfos">First Name</p>
-                  <p className="profile-pinfos">Last Name</p>
+                  <p className="profile-pinfos">{data.firstName}</p>
+                  <p className="profile-pinfos">{data.lastName}</p>
                 </div>
                 <div>
-                  <p className="profile-pinfos">Phone Number</p>
-                  <p className="profile-pinfos">janedoe@gmail.com</p>
+                  {/* <p className="profile-pinfos">Phone Number</p> */}
+                  <p className="profile-pinfos">{data.email}</p>
                 </div>
               </div>
               <div>
-                <div className="mb-2">Address</div>
-                <div className="address-box">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eligendi quas pariatur minus aperiam, totam tempora optio
-                  accusantium illo quam culpa odio dolores, officia tempore eius
-                  a. Deserunt rem recusandae quibusdam!
-                </div>
+                <div className="mb-2">{data.address}</div>
+                <div className="address-box">{data.address}</div>
               </div>
             </div>
           </div>
           <div className="profile-right">
-            <ProfileCard className="mt-4" />
+            <ProfileCard className="mt-4" data={data} />
           </div>
         </div>
 
@@ -44,22 +40,24 @@ function StudentProfile() {
           <div className="profile-subheading mb-3">12th Grade</div>
           <div className="profile-values">
             <div>
-              <p className="profile-pinfos">Board</p>
+              <p className="profile-pinfos">{data.higherSecondary.board}</p>
             </div>
             <div>
-              <p className="profile-pinfos">Percentage</p>
+              <p className="profile-pinfos">{data.higherSecondary.cgpa} %</p>
             </div>
           </div>
           <div className="profile-subheading mb-3">Undergraduate Degree</div>
           <div>
             <div className="profile-values">
-              <p className="profile-pinfos">Degree</p>
-              <p className="profile-pinfos">Branch</p>
-              <p className="profile-pinfos">CGPA</p>
+              <p className="profile-pinfos">{data.degree}</p>
+              <p className="profile-pinfos">{data.department}</p>
+              <p className="profile-pinfos">{data.cgpa}</p>
             </div>
             <div className="profile-values">
-              <p className="profile-pinfos">Year of Graduation</p>
-              <p className="profile-pinfos">Year of Study</p>
+              <p className="profile-pinfos">{data.expectedGraduationYear}</p>
+              <p className="profile-pinfos">
+                Year {data.expectedGraduationYear - data.yearOfJoining}
+              </p>
             </div>
           </div>
         </div>
@@ -67,26 +65,24 @@ function StudentProfile() {
         <p className="profile-pinfo-heading mt-4">Relevant Links</p>
         <div className="profile-attributes">
           <div className="profile-values">
-            <p className="profile-pinfos">Github</p>
-            <p className="profile-pinfos">LinkedIn</p>
+            <p className="profile-pinfos">Github: none</p>
+            <p className="profile-pinfos">LinkedIn: none</p>
           </div>
 
           <div>
             <p>Others (if any)</p>
-            <div className="links-box">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reiciendis eveniet magnam, quam in commodi ea adipisci mollitia
-              sunt, harum ducimus accusantium ut at possimus ad pariatur iusto
-              fugiat? Eius, illum!
-            </div>
+            <div className="links-box"></div>
           </div>
         </div>
 
         <p className="profile-pinfo-heading mt-4">Areas Of Interest</p>
         <div className="profile-attributes">
           <div className="profile-values">
-            <p className="interest-box">Machine Learning</p>
-            <p className="interest-box">Python</p>
+            {data.areasOfInterest.map((interest, i) => (
+              <p className="interest-box" key={i}>
+                {interest}
+              </p>
+            ))}
           </div>
         </div>
 

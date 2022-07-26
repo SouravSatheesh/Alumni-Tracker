@@ -1,0 +1,116 @@
+.profiles-view {
+  background-color: #dad7cd;
+  min-height: calc(100vh - 70px);
+  padding-top: 8vh;
+  user-select: none;
+  padding-bottom: 15vh;
+}
+
+.profiles-view-cnt {
+  width: 80%;
+  margin: auto;
+}
+
+.profiles-view-head {
+  width: fit-content;
+  color: black;
+  font-weight: 500;
+  font-size: calc(1rem + 2vw);
+  margin-bottom: 20px;
+}
+
+.profiles-view-head:after {
+  content: "";
+  display: block;
+  width: 70%;
+  border-bottom: 4px solid rgba(88, 129, 87, 0.893);
+}
+
+.profiles-view-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 20px;
+  gap: 40px;
+}
+
+.search-cnt {
+  width: fit-content;
+  border: 2px solid rgba(58, 90, 64, 1);
+  background-color: white;
+  border-radius: 6px;
+}
+
+.search-cnt input {
+  width: 400px;
+  border: none !important;
+  border-radius: 6px 0 0 6px;
+  outline: none;
+  padding: 5px 14px;
+}
+
+.search-cnt .search-ic {
+  width: 50px;
+  border-left: 2px solid rgba(58, 90, 64, 1);
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.filter-inner .department {
+  border: 2px solid rgba(58, 90, 64, 1);
+  border-radius: 6px;
+}
+
+.filter-inner .department:first-child {
+	width: 300px;
+}
+
+.filter-inner .department:nth-child(2) {
+	width: 550px;
+}
+
+.filter-dept__control,
+.filter-dept__value-container {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.filter-dept__indicator-separator {
+  background-color: rgba(58, 90, 64, 1);
+  width: 2px;
+}
+
+.filter-inner .grad {
+  width: 210px;
+  border: 2px solid rgba(58, 90, 64, 1) !important;
+  border-radius: 6px;
+  outline: none;
+  padding: 5px 10px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.filter-inner .grad::-webkit-outer-spin-button,
+.filter-inner .grad::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.filter-inner .grad[type=number] {
+  -moz-appearance: textfield;
+}
+
+.apply-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  background-color: rgba(58, 90, 64, 1);
+  color: white;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 0 20px;
+  cursor: pointer;
+  height: 40px;
+}

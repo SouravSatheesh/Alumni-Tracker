@@ -4,19 +4,30 @@ const authContext = createContext();
 
 export const isAuth = {
   isAuthenticated: false,
-  userType: "student",
+  userType: "",
   registering: false,
-  login() {
-    return new Promise((res) => {
+  authenticate() {
+    if (localStorage.getItem("authKey")) {
       this.isAuthenticated = true;
-      res();
-    });
+    } else {
+      this.userType = "";
+    }
+  },
+  login(authKey, userId, userType) {
+    localStorage.setItem("authKey", authKey);
+    localStorage.setItem("userId", userId);
+    localStorage.setItem("userType", userType);
+    this.isAuthenticated = true;
   },
   logout() {
-    return new Promise((res) => {
-      this.isAuthenticated = false;
-      res();
-    });
+    localStorage.removeItem("authKey");
+    localStorage.removeItem("userid");
+    localStorage.removeItem("userType");
+    this.isAuthenticated = false;
+  },
+  checkAuth() {
+    this.authenticate();
+    return this.isAuthenticated;
   },
 };
 
